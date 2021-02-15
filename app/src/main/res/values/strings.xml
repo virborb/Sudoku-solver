@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sudoku Solver</string>
+    <string name="scan">Scan Sudoku</string>
+    <string name="manual">Enter Sudoku manually</string>
+    <string name="quit">Quit</string>
+    <!-- Strings used for fragments for navigation -->
+
+</resources>
