@@ -13,10 +13,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button scan = findViewById(R.id.scan);
+        Button scan = findViewById(R.id.manual);
         scan.setOnClickListener(e ->{
-            //Intent intent = new Intent(this, ManualInsertActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, InsertActivity.class);
+            startActivity(intent);
         });
     }
 }
