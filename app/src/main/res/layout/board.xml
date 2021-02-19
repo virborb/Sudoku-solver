@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:showIn="@layout/activity_insert">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/group1"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/group2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/group2"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/group3"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/group2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/group4"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        app:layout_constraintEnd_toStartOf="@+id/group5"
+        app:layout_constraintTop_toBottomOf="@id/group1" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/group5"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group2" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/group6"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        app:layout_constraintStart_toEndOf="@+id/group5"
+        app:layout_constraintTop_toBottomOf="@+id/group3" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        app:layout_constraintEnd_toStartOf="@+id/group8"
+        app:layout_constraintTop_toBottomOf="@+id/group4" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/group8"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group5" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        app:layout_constraintStart_toEndOf="@+id/group8"
+        app:layout_constraintTop_toBottomOf="@+id/group6" />
+</merge>
