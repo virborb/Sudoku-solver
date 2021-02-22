@@ -4,5 +4,6 @@
     <string name="manual">Enter Sudoku manually</string>
     <string name="quit">Quit</string>
     <string name="hint">1-9</string>
+    <string name="solve">Solve Sudoku</string>
 
 </resources>

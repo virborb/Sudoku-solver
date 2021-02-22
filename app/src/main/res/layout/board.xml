@@ -58,6 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/group3" />
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/group7"
         android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
@@ -74,6 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/group5" />
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/group9"
         android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
