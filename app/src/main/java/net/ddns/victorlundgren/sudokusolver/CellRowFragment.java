@@ -3,10 +3,16 @@ package net.ddns.victorlundgren.sudokusolver;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,14 +23,11 @@ public class CellRowFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "col1";
-    private static final String ARG_PARAM2 = "col2";
-    private static final String ARG_PARAM3 = "col3";
+    private static final String ARG_PARAM1 = "row";
+
 
     // TODO: Rename and change types of parameters
-    private int col1;
-    private int col2;
-    private int col3;
+    private ArrayList<Integer> row;
 
     public CellRowFragment() {
         // Required empty public constructor
@@ -34,29 +37,41 @@ public class CellRowFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param col1 column 1.
-     * @param col2 column 2.
-     * @param col3 column 3.
+     * @param row 3 columns in a row.
      * @return A new instance of fragment CellRowFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CellRowFragment newInstance(int col1, int col2, int col3) {
+    public static CellRowFragment newInstance(ArrayList<Integer> row) {
         CellRowFragment fragment = new CellRowFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, col1);
-        args.putInt(ARG_PARAM2, col2);
-        args.putInt(ARG_PARAM2, col3);
+        args.putIntegerArrayList(ARG_PARAM1, row);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    /**
+     * @return The cellRow
+     */
+    public ArrayList<Integer> getRow() {
+        int[] ids = {R.id.Col1, R.id.Col2, R.id.Col3};
+        row = new ArrayList<>();
+        for (int id : ids) {
+            EditText text = getActivity().findViewById(id);
+            String temp = text.getText().toString();
+            if (!"".equals(temp)) {
+                row.add(Integer.parseInt(temp));
+            } else {
+                row.add(0);
+            }
+        }
+        return row;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            col1 = getArguments().getInt(ARG_PARAM1);
-            col2 = getArguments().getInt(ARG_PARAM2);
-            col3 = getArguments().getInt(ARG_PARAM3);
+            row = getArguments().getIntegerArrayList(ARG_PARAM1);
         }
     }
 
@@ -66,4 +81,6 @@ public class CellRowFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cell_row, container, false);
     }
+
+
 }

@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CellGroupFragment#newInstance} factory method to
@@ -18,7 +21,7 @@ public class CellGroupFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "cells";
 
-    private int[] cells;
+    private ArrayList<Integer> cells;
 
     public CellGroupFragment() {
         // Required empty public constructor
@@ -39,11 +42,21 @@ public class CellGroupFragment extends Fragment {
         return fragment;
     }
 
+    public ArrayList<Integer> getCells() {
+        List<Fragment> list = getChildFragmentManager().getFragments();
+        cells = new ArrayList<>();
+        for (Fragment f: list) {
+            CellRowFragment cellRow = (CellRowFragment) f;
+            cells.addAll(((CellRowFragment) f).getRow());
+        }
+        return cells;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            cells = getArguments().getIntArray(ARG_PARAM1);
+            cells = getArguments().getIntegerArrayList(ARG_PARAM1);
         }
     }
 
