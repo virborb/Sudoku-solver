@@ -53,18 +53,16 @@ public class CellGroupFragment extends Fragment {
             CellRowFragment cellRow = (CellRowFragment) f;
             cells.addAll(cellRow.getRow());
         }
-        Log.d("MyTag", "getCells: " + cells);
         return cells;
     }
 
     public void setCells(List<Integer> cells) {
-        //List<Fragment> list = getTargetFragment()
-        Log.d("MyTag", "setCells: " + getChildFragmentManager().getFragments().toString());
-//        for (Fragment f: list) {
-//            CellRowFragment cellRow = (CellRowFragment) f;
-//             cellRow.setRow(cells);
-//             cells = (ArrayList<Integer>) cells.subList(3, cells.size());
-//        }
+        List<Fragment> list = getChildFragmentManager().getFragments();
+        for (Fragment f: list) {
+            CellRowFragment cellRow = (CellRowFragment) f;
+             cellRow.setRow(cells);
+             cells = cells.subList(3, cells.size());
+        }
     }
 
     @Override

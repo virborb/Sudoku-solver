@@ -75,8 +75,7 @@ public class CellRowFragment extends Fragment {
         for (int i = 0; i < ids.length; i++) {
             EditText text = getView().findViewById(ids[i]);
             String temp = row.get(i).toString();
-            if (!"".equals(temp)) {
-                Log.d("test", "setRow: " + temp);
+            if (!"0".equals(temp)) {
                 text.setText(temp, BufferType.NORMAL);
             }
 

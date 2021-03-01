@@ -36,7 +36,6 @@ public class InsertActivity extends AppCompatActivity {
                 CellGroupFragment cellGroup = (CellGroupFragment) f;
                 cells.addAll(cellGroup.getCells());
             }
-            Log.d("MyTag", "Insert onCreate: " + cells);
             intent.putExtra(CELL_ARRAY, cells);
             startActivity(intent);
         });

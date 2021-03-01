@@ -1,5 +1,6 @@
 package net.ddns.victorlundgren.sudokusolver;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -14,6 +15,11 @@ public class SolveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solve);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         List<Integer> cells = getIntent().getIntegerArrayListExtra(InsertActivity.CELL_ARRAY);
         List<Fragment> list = getSupportFragmentManager().getFragments();
         for (Fragment f: list) {
@@ -22,6 +28,4 @@ public class SolveActivity extends AppCompatActivity {
             cells = cells.subList(9, cells.size());
         }
     }
-
-
 }
