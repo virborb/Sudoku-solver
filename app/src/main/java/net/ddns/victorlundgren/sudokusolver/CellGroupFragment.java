@@ -2,8 +2,12 @@ package net.ddns.victorlundgren.sudokusolver;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +51,20 @@ public class CellGroupFragment extends Fragment {
         cells = new ArrayList<>();
         for (Fragment f: list) {
             CellRowFragment cellRow = (CellRowFragment) f;
-            cells.addAll(((CellRowFragment) f).getRow());
+            cells.addAll(cellRow.getRow());
         }
+        Log.d("MyTag", "getCells: " + cells);
         return cells;
+    }
+
+    public void setCells(List<Integer> cells) {
+        //List<Fragment> list = getTargetFragment()
+        Log.d("MyTag", "setCells: " + getChildFragmentManager().getFragments().toString());
+//        for (Fragment f: list) {
+//            CellRowFragment cellRow = (CellRowFragment) f;
+//             cellRow.setRow(cells);
+//             cells = (ArrayList<Integer>) cells.subList(3, cells.size());
+//        }
     }
 
     @Override
@@ -65,5 +80,17 @@ public class CellGroupFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cell_group, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        int ids[] = {R.id.Row1, R.id.Row2, R.id.Row3};
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        for (int i = 0; i < 3; i++) {
+            transaction.add(ids[i], new CellRowFragment(), Integer.toString(i));
+            transaction.addToBackStack(Integer.toString(i));
+        }
+        transaction.commit();
     }
 }
