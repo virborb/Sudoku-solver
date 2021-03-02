@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Board {
-    private static final int ROWS = 9;
-    private int[] cells;
+    protected static final int ROWS = 9;
+    private ArrayList<Integer> cells;
 
-    public Board(int[] cells) {
+    public Board(ArrayList<Integer> cells) {
         this.cells = cells;
     }
 
-    public int[] getCells() {
+    public ArrayList<Integer> getCells() {
         return cells;
     }
 
     public int getCell(Position p) {
-        return cells[p.getX()*ROWS + p.getY()];
+        return cells.get(p.getX() * ROWS + p.getY());
     }
 
     public void setCells(int cell, Position p) {
-        cells[p.getX()*ROWS + p.getY()] = cell;
+        cells.set(p.getX() * ROWS + p.getY(), cell);
     }
 }
