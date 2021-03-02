@@ -5,17 +5,17 @@
     tools:showIn="@layout/activity_insert">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/group1"
-        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:id="@+id/block_1"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellBlockFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toStartOf="@+id/group2"
+        app:layout_constraintEnd_toStartOf="@+id/block_2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/group2"
-        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:id="@+id/block_2"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellBlockFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
         android:layout_marginTop="32dp"
@@ -24,61 +24,61 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/group3"
-        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:id="@+id/block_3"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellBlockFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintStart_toEndOf="@+id/group2"
+        app:layout_constraintStart_toEndOf="@+id/block_2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/group4"
-        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:id="@+id/block_4"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellBlockFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
-        app:layout_constraintEnd_toStartOf="@+id/group5"
-        app:layout_constraintTop_toBottomOf="@id/group1" />
+        app:layout_constraintEnd_toStartOf="@+id/block_5"
+        app:layout_constraintTop_toBottomOf="@id/block_1" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/group5"
-        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:id="@+id/block_5"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellBlockFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/group2" />
+        app:layout_constraintTop_toBottomOf="@+id/block_2" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/group6"
-        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:id="@+id/block_6"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellBlockFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
-        app:layout_constraintStart_toEndOf="@+id/group5"
-        app:layout_constraintTop_toBottomOf="@+id/group3" />
+        app:layout_constraintStart_toEndOf="@+id/block_5"
+        app:layout_constraintTop_toBottomOf="@+id/block_3" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/group7"
-        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:id="@+id/block_7"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellBlockFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
-        app:layout_constraintEnd_toStartOf="@+id/group8"
-        app:layout_constraintTop_toBottomOf="@+id/group4" />
+        app:layout_constraintEnd_toStartOf="@+id/block_8"
+        app:layout_constraintTop_toBottomOf="@+id/block_4" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/group8"
-        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:id="@+id/block_8"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellBlockFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/group5" />
+        app:layout_constraintTop_toBottomOf="@+id/block_5" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/group9"
-        android:name="net.ddns.victorlundgren.sudokusolver.CellGroupFragment"
+        android:id="@+id/block_9"
+        android:name="net.ddns.victorlundgren.sudokusolver.CellBlockFragment"
         android:layout_width="103dp"
         android:layout_height="103dp"
-        app:layout_constraintStart_toEndOf="@+id/group8"
-        app:layout_constraintTop_toBottomOf="@+id/group6" />
+        app:layout_constraintStart_toEndOf="@+id/block_8"
+        app:layout_constraintTop_toBottomOf="@+id/block_6" />
 </merge>

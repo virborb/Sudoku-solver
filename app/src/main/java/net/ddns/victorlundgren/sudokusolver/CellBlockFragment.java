@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +16,17 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CellGroupFragment#newInstance} factory method to
+ * Use the {@link CellBlockFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CellGroupFragment extends Fragment {
+public class CellBlockFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "cells";
 
     private ArrayList<Integer> cells;
 
-    public CellGroupFragment() {
+    public CellBlockFragment() {
         // Required empty public constructor
     }
 
@@ -36,10 +35,10 @@ public class CellGroupFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param cells numbers to put in cells.
-     * @return A new instance of fragment CellGroupFragment.
+     * @return A new instance of fragment CellBlockFragment.
      */
-    public static CellGroupFragment newInstance(int[] cells) {
-        CellGroupFragment fragment = new CellGroupFragment();
+    public static CellBlockFragment newInstance(int[] cells) {
+        CellBlockFragment fragment = new CellBlockFragment();
         Bundle args = new Bundle();
         args.putIntArray(ARG_PARAM1, cells);
         fragment.setArguments(args);
@@ -77,7 +76,7 @@ public class CellGroupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cell_group, container, false);
+        return inflater.inflate(R.layout.fragment_cell_block, container, false);
     }
 
     @Override

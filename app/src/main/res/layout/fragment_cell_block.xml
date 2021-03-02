@@ -4,7 +4,7 @@
     android:id="@+id/group"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CellGroupFragment">
+    tools:context=".CellBlockFragment">
 
     <FrameLayout
         android:id="@+id/Row1"

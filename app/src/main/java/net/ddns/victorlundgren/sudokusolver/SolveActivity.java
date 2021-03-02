@@ -1,11 +1,9 @@
 package net.ddns.victorlundgren.sudokusolver;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import net.ddns.victorlundgren.sudokusolver.model.Board;
 import net.ddns.victorlundgren.sudokusolver.model.Solver;
@@ -31,8 +29,8 @@ public class SolveActivity extends AppCompatActivity {
         Solver solver = new Solver(board);
         solver.solveSudoku();
         for (Fragment f: list) {
-            CellGroupFragment cellGroup = (CellGroupFragment) f;
-            cellGroup.setCells(cells);
+            CellBlockFragment cellBlock = (CellBlockFragment) f;
+            cellBlock.setCells(cells);
             cells = new ArrayList<Integer>(cells.subList(9, cells.size()));
         }
     }
