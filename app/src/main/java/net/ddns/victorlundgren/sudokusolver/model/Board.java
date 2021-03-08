@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 public class Board {
     protected static final int ROWS = 9;
+    protected static final int COLUMNS = 9;
+    protected static final int BLOCK = 9;
     private ArrayList<Integer> cells;
 
     public Board(ArrayList<Integer> cells) {
