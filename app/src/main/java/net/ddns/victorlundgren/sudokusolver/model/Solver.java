@@ -22,7 +22,7 @@ public class Solver {
             Log.d("MyTag", "solveSudoku: " + cells.subList(i * Board.ROWS, i * Board.ROWS + 9).toString());
             Log.d("MyTag", "solveSudoku: " + checkRow(new ArrayList<Integer>(cells.subList(i * Board.ROWS, i * Board.ROWS + 9))));
         }
-        //Log.d("MyTag", "checkRows return: " + checkRows(cells));
+        Log.d("MyTag", "checkColumns return: " + checkColumns(cells));
         return board;
     }
 
@@ -43,6 +43,23 @@ public class Solver {
             } else if (temp != 0) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    private boolean checkColumns(ArrayList<Integer> cells) {
+        ArrayList<Integer> check =
+                new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
+        for (int i = 0; i < Board.COLUMNS; i++) {
+            for (int j = 0; j < Board.ROWS; j++) {
+                Integer temp = cells.get(i+j*Board.ROWS);
+                if(check.contains(temp)) {
+                    check.remove(temp);
+                } else if (temp != 0) {
+                    return false;
+                }
+            }
+            check = new ArrayList<Integer>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
         }
         return true;
     }
