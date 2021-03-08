@@ -15,11 +15,11 @@
         android:id="@+id/Row2"
         android:layout_width="105dp"
         android:layout_height="35dp"
-        android:translationY="34dp" />
+        android:translationX="103dp" />
 
     <FrameLayout
         android:id="@+id/Row3"
         android:layout_width="105dp"
         android:layout_height="35dp"
-        android:translationY="68dp" />
+        android:translationX="206dp" />
 </FrameLayout>
