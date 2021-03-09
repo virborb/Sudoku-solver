@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import net.ddns.victorlundgren.sudokusolver.model.Board;
 import net.ddns.victorlundgren.sudokusolver.model.Solver;
@@ -26,8 +27,14 @@ public class SolveActivity extends AppCompatActivity {
         List<Fragment> list = getSupportFragmentManager().getFragments();
 
         Board board = new Board(cells);
-        Solver solver = new Solver(board);
-        solver.solveSudoku();
+        Solver solver = new Solver();
+        try {
+            solver.solveSudoku(board);
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(getApplicationContext(), "Illegal Suduku board",
+                    Toast.LENGTH_SHORT).show();
+            finish();
+        }
         for (Fragment f: list) {
             CellBlockFragment cellBlock = (CellBlockFragment) f;
             cellBlock.setCells(cells);
