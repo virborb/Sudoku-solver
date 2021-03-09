@@ -20,6 +20,7 @@ public class Solver {
         ArrayList<Integer> cells = board.getCells();
         Log.d("MyTag", "checkRows return: " + checkRows(cells));
         Log.d("MyTag", "checkColumns return: " + checkColumns(cells));
+        Log.d("MyTag", "checkBlocks return: " + checkBlocks(cells));
         return board;
     }
 
@@ -31,14 +32,11 @@ public class Solver {
     }
 
     private boolean checkRows(ArrayList<Integer> cells) {
-        ArrayList<Integer> check =
-                new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
+        ArrayList<Integer> check = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
         for (int i = 0; i < Board.ROWS; i++) {
             for (int j = 0; j < Board.COLUMNS; j++) {
-                Integer temp = cells.get(i * Board.ROWS + j);
-                if (check.contains(temp)) {
-                    check.remove(temp);
-                } else if (temp != 0) {
+                Integer cell = cells.get(i * Board.ROWS + j);
+                if(!checkCell(cell, check)) {
                     return false;
                 }
             }
@@ -48,14 +46,11 @@ public class Solver {
     }
 
     private boolean checkColumns(ArrayList<Integer> cells) {
-        ArrayList<Integer> check =
-                new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
+        ArrayList<Integer> check = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
         for (int i = 0; i < Board.COLUMNS; i++) {
             for (int j = 0; j < Board.ROWS; j++) {
-                Integer temp = cells.get(i+j*Board.ROWS);
-                if(check.contains(temp)) {
-                    check.remove(temp);
-                } else if (temp != 0) {
+                Integer cell = cells.get(i+j*Board.ROWS);
+                if(!checkCell(cell, check)) {
                     return false;
                 }
             }
@@ -64,25 +59,41 @@ public class Solver {
         return true;
     }
 
-//    private boolean checkRows(ArrayList<Integer> cells) {
-//
-//        ArrayList<Integer> check =
-//                new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
-//        for (int i = 0; i < cells.size()-1; i++) {
-//            if(i != 0 && i%22 == 0) {
-//                i = i - 19;
-//                check = new ArrayList<Integer>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
-//            } else {
-//                i = (i != 0 && i % 3 == 0) ? i + 6 : i;
-//            }
-//            Integer temp = cells.get(i);
-//            Log.d("MyTag", "checkRow: " + temp + " i: " + i);
-//            if(check.contains(temp)) {
-//                check.remove(temp);
-//            } else if (temp != 0) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
+    private boolean checkBlocks(ArrayList<Integer> cells) {
+        ArrayList<Integer> check1 = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
+        ArrayList<Integer> check2 = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
+        ArrayList<Integer> check3 = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
+        for (int i = 0; i < Board.ROWS; i++) {
+            if(i % 3 == 0) {
+                check1 = new ArrayList<Integer>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
+                check2 = new ArrayList<Integer>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
+                check3 = new ArrayList<Integer>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
+            }
+            for (int j = 0; j < Board.COLUMNS; j++) {
+                Integer cell = cells.get(i * Board.ROWS + j);
+                Log.d("MyTag", "checkBlocks: index:" + (i * Board.ROWS + j) + " temp: " + cell);
+                if (j < 3) {
+                    if(!checkCell(cell, check1)) {
+                        return false;
+                    }
+                } else if (j < 6) {
+                    if(!checkCell(cell, check2)) {
+                        return false;
+                    }
+                } else {
+                    if(!checkCell(cell, check3)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean checkCell(Integer cell, ArrayList<Integer> check) {
+        if(check.contains(cell)) {
+            check.remove(cell);
+        } else return cell == 0;
+        return true;
+    }
 }
