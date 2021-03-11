@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -15,7 +16,7 @@ import java.util.Random;
 public class Solver {
 
     public boolean isLegalBoard(Board board) {
-        return checkSuduku(board.getCells()) == 0;
+        return checkSuduku(board.getCells()).isEmpty();
     }
 
     public Board solveSudoku(Board board) {
@@ -34,9 +35,9 @@ public class Solver {
                     break;
                 }
                 savedCellNumber = cells.get(i);
-                savedError = checkSuduku(cells);
-                while (savedCellNumber != cells.get(i) && checkSuduku(cells) >= savedError) {
-                    if(checkSuduku(cells) == 0) {
+                savedError = checkSuduku(cells).size();
+                while (savedCellNumber != cells.get(i) && checkSuduku(cells).size() >= savedError) {
+                    if(checkSuduku(cells).isEmpty()) {
                         return board;
                     }
                     cells.set(i, cells.get(i) < 9 ? cells.get(i) + 1 : 1);
@@ -59,18 +60,22 @@ public class Solver {
         return indexes;
     }
 
-    private int checkSuduku(ArrayList<Integer> cells) {
-        return checkRows(cells) + checkColumns(cells) + checkBlocks(cells);
+    private HashSet<Integer> checkSuduku(ArrayList<Integer> cells) {
+        HashSet<Integer> errorCells = new HashSet<>(checkRows(cells));
+        errorCells.addAll(checkColumns(cells));
+        errorCells.addAll(checkBlocks(cells));
+        return errorCells;
     }
 
-    private int checkRows(ArrayList<Integer> cells) {
+    private ArrayList<Integer> checkRows(ArrayList<Integer> cells) {
         ArrayList<Integer> check = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
-        int errors = 0;
+        ArrayList<Integer> errors = new ArrayList<>();
         for (int i = 0; i < Board.ROWS; i++) {
             for (int j = 0; j < Board.COLUMNS; j++) {
-                Integer cell = cells.get(i * Board.ROWS + j);
+                int index = i * Board.ROWS + j;
+                Integer cell = cells.get(index);
                 if(!checkCell(cell, check)) {
-                    errors++;
+                    errors.add(index);
                 }
             }
             check = new ArrayList<Integer>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
@@ -78,14 +83,15 @@ public class Solver {
         return errors;
     }
 
-    private int checkColumns(ArrayList<Integer> cells) {
+    private ArrayList<Integer> checkColumns(ArrayList<Integer> cells) {
         ArrayList<Integer> check = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
-        int errors = 0;
+        ArrayList<Integer> errors = new ArrayList<>();
         for (int i = 0; i < Board.COLUMNS; i++) {
             for (int j = 0; j < Board.ROWS; j++) {
-                Integer cell = cells.get(i+j*Board.ROWS);
+                int index = i + j * Board.ROWS;
+                Integer cell = cells.get(index);
                 if(!checkCell(cell, check)) {
-                    errors++;
+                    errors.add(index);
                 }
             }
             check = new ArrayList<Integer>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
@@ -93,11 +99,11 @@ public class Solver {
         return errors;
     }
 
-    private int checkBlocks(ArrayList<Integer> cells) {
+    private ArrayList<Integer> checkBlocks(ArrayList<Integer> cells) {
         ArrayList<Integer> check1 = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
         ArrayList<Integer> check2 = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
         ArrayList<Integer> check3 = new ArrayList<>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
-        int errors = 0;
+        ArrayList<Integer> errors = new ArrayList<>();
         for (int i = 0; i < Board.ROWS; i++) {
             if(i % 3 == 0) {
                 check1 = new ArrayList<Integer>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
@@ -105,18 +111,19 @@ public class Solver {
                 check3 = new ArrayList<Integer>(Arrays.asList( 1, 2, 3, 4, 5, 6, 7, 8, 9));
             }
             for (int j = 0; j < Board.COLUMNS; j++) {
-                Integer cell = cells.get(i * Board.ROWS + j);
+                int index = i * Board.ROWS + j;
+                Integer cell = cells.get(index);
                 if (j < 3) {
                     if(!checkCell(cell, check1)) {
-                        errors++;
+                        errors.add(index);
                     }
                 } else if (j < 6) {
                     if(!checkCell(cell, check2)) {
-                        errors++;
+                        errors.add(index);
                     }
                 } else {
                     if(!checkCell(cell, check3)) {
-                        errors++;
+                        errors.add(index);
                     }
                 }
             }
