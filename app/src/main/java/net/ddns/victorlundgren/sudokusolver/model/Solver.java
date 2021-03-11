@@ -4,7 +4,13 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 
 public class Solver {
 
@@ -14,10 +20,28 @@ public class Solver {
 
     public Board solveSudoku(Board board) {
         ArrayList<Integer> cells = board.getCells();
+        Random random = new Random();
         if (isLegalBoard(board)) {
-            ListIterator<Integer> indexes = getEmptyCellIndexes(cells).listIterator();
-            while (indexes.hasNext()) {
-                Integer i = indexes.next();
+            ArrayList<Integer> emptyCells = getEmptyCellIndexes(cells);
+            for (Integer i : emptyCells) {
+                cells.set(i, random.nextInt(9) + 1);
+            }
+            Collections.shuffle(emptyCells);
+            int savedCellNumber = 0;
+            int savedError = 0;
+            for (Integer i : emptyCells) {
+                if(isLegalBoard(board)) {
+                    break;
+                }
+                savedCellNumber = cells.get(i);
+                savedError = checkSuduku(cells);
+                while (savedCellNumber != cells.get(i) && checkSuduku(cells) >= savedError) {
+                    if(checkSuduku(cells) == 0) {
+                        return board;
+                    }
+                    cells.set(i, cells.get(i) < 9 ? cells.get(i) + 1 : 1);
+                    Log.d("MyTag", "solveSudoku: i:" + i + " temp:" + cells.get(i) + " savedNumber:" + savedCellNumber + " errors:" + checkSuduku(cells) + " savedError:" + savedError);
+                }
             }
         } else {
             throw new IllegalArgumentException("Illegal board");
