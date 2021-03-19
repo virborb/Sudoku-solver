@@ -28,13 +28,25 @@ public class SolveActivity extends AppCompatActivity {
 
         Board board = new Board(cells);
         Solver solver = new Solver();
-        try {
-            solver.solveSudoku(board);
-        } catch (IllegalArgumentException e) {
-            Toast.makeText(getApplicationContext(), "Illegal Suduku board",
-                    Toast.LENGTH_SHORT).show();
-            finish();
+        int[][] test = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                test[i][j] = cells.get(i * 9 + j);
+            }
         }
+        solver.solveSudoku(test, 9);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                cells.set(i * 9 + j, test[i][j]);
+            }
+        }
+//        try {
+//            solver.solveSudoku(board);
+//        } catch (IllegalArgumentException e) {
+//            Toast.makeText(getApplicationContext(), "Illegal Suduku board",
+//                    Toast.LENGTH_SHORT).show();
+//            finish();
+//        }
         for (Fragment f: list) {
             CellBlockFragment cellBlock = (CellBlockFragment) f;
             cellBlock.setCells(cells);
